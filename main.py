@@ -1,5 +1,19 @@
 # Original contributor: Richard Carnivale
 
+def encoded():
+    try:
+        password = input("Please enter your password to encode: ")
+        while len(password) != 8:
+            print("Please enter a 8-digit password")
+            password = input("Please enter your password to encode: ")
+    except:
+        print("There was an error. Try again.")
+        password = input("Please enter your password to encode: ")
+        while len(password) != 8:
+            print("Please enter a 8-digit password")
+            password = input("Please enter your password to encode: ")
+
+    return password
 
 def main():
 
@@ -16,32 +30,8 @@ def main():
             break
 
         if option == 1:
-            try:
-                password = input("Please enter your password to encode: ")
-                while len(password) != 8:
-                    print("Please enter a 8-digit password")
-                    password = input("Please enter your password to encode: ")
-            except:
-                print("There was an error. Try again.")
-                password = input("Please enter your password to encode: ")
-                while len(password) != 8:
-                    print("Please enter a 8-digit password")
-                    password = input("Please enter your password to encode: ")
-
+            password = encoded()
             print("Your password has been encoded and stored!\n")
-
-        try:
-            if option == 2:
-                encodedPassword = ''
-
-                for i in range(len(password)):
-                    encodedPassword += (str((int(password[i]) + 3) % 10))
-
-                print(f"The encoded password is {encodedPassword}, and the original password is {password}.\n")
-        except:
-            print("Error")
-            option = int(input("Please enter an option: "))
-            continue
 
         print("Menu\n-------------\n1. Encode\n2. Decode\n3. Quit\n")
         option = int(input("Please enter an option: "))
