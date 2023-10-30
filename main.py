@@ -21,6 +21,19 @@ def encoded():
         
     return encodedPassword
 
+def decode_password(password): # This decode function was made by Emir Erkilic that returns the decoded password, and is used when option 2 is selected.
+    decoded = ""
+    for char in str(password):
+        if char.isdigit():
+            digit = int(char)
+            if 3 <= digit <= 9:
+                decoded_digit = (digit - 3) % 10
+            else:
+                decoded_digit = (digit + 7) % 10
+            decoded += str(decoded_digit)
+        else:
+            decoded += char
+    return decoded
 
 def main():
 
@@ -44,9 +57,13 @@ def main():
             encodedPassword = encoded()
             print("Your password has been encoded and stored!\n")
 
-        # need to write and define the decoder function here
+        # This section of the code "if option == 2:" was written by Emir Erkilic, and it implements the decode_password function.
         if option == 2:
-            pass
+            if encodedPassword is not None:
+                decoded_password = decode_password(encodedPassword)
+                print(f"The encoded password is {encodedPassword}, and the original password is {decoded_password}.\n")
+            else:
+                print("No password has been encoded yet.")
 
         # print menu and ask for option
         print("Menu\n-------------\n1. Encode\n2. Decode\n3. Quit\n")
